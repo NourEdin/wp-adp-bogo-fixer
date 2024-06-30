@@ -1,8 +1,11 @@
 # Introduction
 A WordPress plugin that implements the BOGO (Buy One Get One) sale scheme using the WP plugin "ADP: Advanced Dynamic Pricing for WooCommerce" with a modified behavior. 
 
-# The Requirements
-I assume that it's needed to implement the BOGO discount where the least expensive item in the cart is free when a customer buys another item. This can be implemented using the plugin ADP but with a slight difference in the behavior.
+# How to Use
+Download the plugin zip file and upload it to your WordPress installation.
+
+# The Client Needs
+it's needed to implement the BOGO discount where the least expensive item in the cart is free when a customer buys another item. This can be implemented using the plugin ADP but with a slight difference in the behavior.
 
 # Issues with Current Implementation of ADP
 There are currently two ways to implement BOGO using ADP: With Free Products feature, and with Product Discount feature.
@@ -69,16 +72,49 @@ I use the following configuration for the rule. However, the bundle quantities c
 ### Odd Number of Products
 
 1. A single product.
+
+![image](https://github.com/NourEdin/wp-adp-bogo-fixer/assets/7292410/b76aae40-f8d7-4ac2-b021-e47e53fba3ec)
+
 2. Three products, all the same.
+
+![image](https://github.com/NourEdin/wp-adp-bogo-fixer/assets/7292410/d9aa0981-f358-48ce-b59f-4a2eb129245d)
+
 3. Three products, all different.
-4. Three products, one is different.
+
+![image](https://github.com/NourEdin/wp-adp-bogo-fixer/assets/7292410/b77425e9-446c-4103-9157-504ae853d68a)
+
+
+4. Three products, two identical and one is less expensive.
+
+![image](https://github.com/NourEdin/wp-adp-bogo-fixer/assets/7292410/da33bd1d-cc65-4eb9-8f39-26beaec128cd)
+
+
+5. Three products, two identical and one is more expensive.
+
+![image](https://github.com/NourEdin/wp-adp-bogo-fixer/assets/7292410/45f196e9-333e-4b43-b93b-be1cb53ffbff)
+
+
 
 ### Even Number of Products
 
 1. Two different products.
+
+![image](https://github.com/NourEdin/wp-adp-bogo-fixer/assets/7292410/2dc8dd41-fcbf-49d2-aee0-6d261dd93a21)
+
+
 2. Two same products.
+
+![image](https://github.com/NourEdin/wp-adp-bogo-fixer/assets/7292410/c6368e96-b0ec-48c3-8c4a-97de00d9511f)
+
+
 3. Four different products.
+
+![image](https://github.com/NourEdin/wp-adp-bogo-fixer/assets/7292410/0fa68a59-a195-4ae0-8433-a06ce4feda29)
+
+
 4. Four products, two items of different products.
+
+![image](https://github.com/NourEdin/wp-adp-bogo-fixer/assets/7292410/b8ccaa96-87b1-4a62-a04d-8ebb9ef43b99)
 
 
 
