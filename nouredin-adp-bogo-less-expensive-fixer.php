@@ -51,6 +51,7 @@ function adp_brc_fix_bogo_product_bundling(Rule $rule, RuleProcessor $processor,
         //Find Paid-to-free ratio.
         $packages = $rule->getPackages();
 
+        //Which package is the free or paid depends on the user selection of sorting order (Cheap first of expensive first)
         if ($rule->getApplyFirstTo() == PackageRule::APPLY_FIRST_TO_CHEAP) {
             $freePkgIndex = 0;
             $paidPkgIndex = 1;
@@ -62,10 +63,9 @@ function adp_brc_fix_bogo_product_bundling(Rule $rule, RuleProcessor $processor,
         //Calculate the new quantities
         $totalPackageQty = $packages[$freePkgIndex]->getQty() + $packages[$paidPkgIndex]->getQty();
 
-        $freeRatio = $packages[$freePkgIndex]->getQty() / $totalPackageQty;
         $paidRatio = $packages[$paidPkgIndex]->getQty() / $totalPackageQty;
-        $freeQty = floor($cartSize * $freeRatio);
         $paidQty = ceil($cartSize * $paidRatio);
+        $freeQty = $cartSize - $paidQty;
 
         //Update the rule
         $packages[$freePkgIndex]->setQty($freeQty);
