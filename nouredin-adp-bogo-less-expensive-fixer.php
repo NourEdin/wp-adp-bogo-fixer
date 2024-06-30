@@ -39,7 +39,7 @@ if (!defined('ABSPATH'))
 function adp_brc_fix_bogo_product_bundling(Rule $rule, RuleProcessor $processor, Cart $cart): Rule
 {
     //We are only interested in package rules, and the logic only applies to those starts with "BOGO" in the title.
-    if (get_class($rule) === PackageRule::class && $rule->getTitle() == 'BOGO') {
+    if (get_class($rule) === PackageRule::class && str_starts_with(strtolower($rule->getTitle()), 'bogo')) {
         //Count cart items, considering duplicate products (ie. quantity >1)
         $cartSize = 0;
         if ($cart && !empty($cart->getItems())) {
