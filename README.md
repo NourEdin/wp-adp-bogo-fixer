@@ -34,6 +34,7 @@ In this example, I add 4 products to the cart as follows:
 So, when there are more than 2 products in the cart, the products are bundled depending on the quantities set in the rule configuration. They are sorted then the discount is applied sequentially. 
 
 Now for the same combination of products, if I change the quantities in the rule configuration to 2-2 (see the screenshot below), the problem disappears and the discount is applied correctly.
+
 ![image](https://github.com/NourEdin/wp-adp-bogo-fixer/assets/7292410/058be08f-81b0-4fa2-b2b4-6340efe1f3f0)
 
 Here's the result:
@@ -48,16 +49,36 @@ If there's a way I can dynamically change these bundling quantities depending on
 ## A Filter Before Rule is Applied
 After digging in the plugin docs and code, I found this hook: `adp_before_apply_rule` that can be used to modify the rule settings before it's applied. I looked it up in the code to find its parameters and how I can use it. 
 
-## BOGO Or BxGx? 
-I assum that the shop admin might want the discount scheme to be something like Buy X Get Y in future. I can implement that by useung the bundle sizes in the rule settings to defined the ratio of Paid-to-free products. 
+## BOGO Or BxGy? 
+I assume that the shop admin might want in the future a discount scheme like Buy X Get Y. I can implement that by easily using the bundle sizes in the rule settings to defined the ratio of Paid-to-free products. 
 While this makes the calculations a bit complicated, it gives the shop admin more flexibility in future discounts.
 
 ## Calculating the New Bundle Sizes
 If the user sets the number of paid items to be X and the free to be Y, then the ratio of the paid items is `$paidRation = X/(X+Y)`, and therefor, the new 'paid' bundle size is `ceil($cartSize * $paidRatio)`.
 Note that I use `ceil()` to work with odd number of products.
 
+## The Rule Configuration
+I use the following configuration for the rule. However, the bundle quantities can be anything depending on the needed discount. For Buy-One-Get-One, it can be 1:1.
+
+![image](https://github.com/NourEdin/wp-adp-bogo-fixer/assets/7292410/f023b13a-f42f-4e66-beba-5e96556e0118)
+
+**Important:** To make it possible for the user to enable or disable the new behavior, the rule mist start with "bogo" (case-insensitive).
+
 ## Tests
-(To be added)
+
+### Odd Number of Products
+
+1. A single product.
+2. Three products, all the same.
+3. Three products, all different.
+4. Three products, one is different.
+
+### Even Number of Products
+
+1. Two different products.
+2. Two same products.
+3. Four different products.
+4. Four products, two items of different products.
 
 
 
